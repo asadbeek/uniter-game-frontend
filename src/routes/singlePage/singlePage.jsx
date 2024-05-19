@@ -1,0 +1,74 @@
+import "./singlePage.scss";
+import placeHolderImg from "../../../public/home-fon.jpg";
+import { useLoaderData } from "react-router-dom";
+import DOMPurify from "dompurify";
+
+function SinglePage() {
+  const team = useLoaderData();
+  console.log("team", team);
+  return (
+    <div className="singlePage">
+      <div className="details">
+        <div className="wrapper">
+          {team.team.img ? (
+            <img
+              src={team.team.img}
+              alt=""
+              style={{
+                maxWidth: "100%",
+                width: "100%",
+                height: "200px",
+                objectFit: "cover",
+              }}
+            />
+          ) : (
+            <img src={placeHolderImg} />
+          )}
+          <div className="info">
+            <div className="top">
+              <div className="post">
+                <h1>Team Name:</h1>
+                <h2>{team.team.name}</h2>
+                <div className="address">
+                  <img src="/pin.png" alt="" />
+                  <span>{team.team.city}</span>
+                </div>
+                <p className="title">Available Days</p>
+                <div>
+                  <div className="price">{team.team.availableDaysAndTimes}</div>
+                </div>
+              </div>
+              <div className="user">
+                <img src={team.team.creator.avatar} alt="" />
+                <span>{team.team.creator.username}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="features">
+        <div className="wrapper">
+          <p className="title">Game Categories</p>
+          <div className="listVertical">
+            <div className="bottom">{team.team.category}</div>
+          </div>
+          <p className="title">Number of players</p>
+          <div className="listVertical">
+            <div className="bottom">{team.team.numberOfPlayers}</div>
+          </div>
+          <p className="title">Description</p>
+          <div className="listVertical">
+            <div
+              className="bottom"
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(team.team.description),
+              }}
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default SinglePage;

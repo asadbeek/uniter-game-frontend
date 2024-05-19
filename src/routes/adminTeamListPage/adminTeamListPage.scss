@@ -1,0 +1,40 @@
+@import "../../responsive.scss";
+
+.adminTeamListPage {
+  display: flex;
+  height: 100%;
+
+  .listContainer {
+    flex: 3;
+    height: 100%;
+
+    .wrapper {
+      margin-top: 50px;
+      height: 100%;
+      padding-right: 50px;
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      overflow-y: scroll;
+      padding-bottom: 50px;
+    }
+  }
+  .imageContainer {
+    flex: 2;
+    background-color: #fcf5f3;
+    height: 100%;
+
+    @include md {
+      flex: none;
+      height: max-content;
+    }
+
+    .wrapper {
+      padding: 0px 0px;
+      height: 100%;
+    }
+    .img1 {
+      margin-top: 120px;
+    }
+  }
+}
