@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./games.scss";
 import { Link } from "react-router-dom";
+import DOMPurify from "dompurify";
 
 const Games = () => {
   const [games, setGames] = useState([]);
@@ -17,10 +18,15 @@ const Games = () => {
       {games.map((game) => (
         <Link to={`/game/${game.id}`} key={game.id}>
           <div className="card">
-            {game.imageUrl && <img src={game.imageUrl} alt={game.title} />}
+            <img src={game.image || "default-image-url.jpg"} alt={game.name} />
             <div className="card-content">
               <h3>{game.name}</h3>
-              <p>{game.description}</p>
+              {/* <div
+                className="bottom"
+                dangerouslySetInnerHTML={{
+                  __html: DOMPurify.sanitize(game.description),
+                }}
+              ></div> */}
             </div>
           </div>
         </Link>

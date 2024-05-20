@@ -22,7 +22,7 @@ const GameDetail = () => {
   return (
     <div className="game-detail--wrapper">
       <img src={game.image || "default-image-url.jpg"} alt={game.name} />
-      <div className="gaem-detail">
+      <div className="game-detail">
         <h1>{game.name}</h1>
         <p>
           <strong>Category:</strong> {game.category}

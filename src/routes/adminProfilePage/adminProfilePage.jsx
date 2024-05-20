@@ -33,7 +33,7 @@ function AdminProfilePage() {
           <div className="info">
             <span>
               Avatar:
-              <img src={currentUser.avatar || "noavatar.png"} alt="" />
+              <img src={"/noavatar.png"} alt="" />
             </span>
             <span>
               Username: <b>{currentUser.username}</b>

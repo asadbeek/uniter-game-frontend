@@ -8,6 +8,12 @@ function Navbar() {
 
   const { currentUser } = useContext(AuthContext);
 
+  // Define an array of routes where the navigation bar should not appear
+  const excludedRoutes = ["/login", "/admin/login"];
+
+  // Check if the current route is in the excludedRoutes array
+  const shouldRenderNavBar = !excludedRoutes.includes(location.pathname);
+
   return (
     <nav>
       <div className="left">
@@ -15,7 +21,11 @@ function Navbar() {
           <img src="/logo.png" alt="" />
           <span>Uniter</span>
         </a>
-        <a href="/games">Games</a>
+        {shouldRenderNavBar && (
+          <>
+            <a href="/games">Games</a>
+          </>
+        )}
       </div>
       <div className="right">
         {currentUser && !currentUser.role ? (
