@@ -16,6 +16,9 @@ import AdminTeamListPage from "./routes/adminTeamListPage/adminTeamListPage";
 import AdminProfilePage from "./routes/adminProfilePage/adminProfilePage";
 import Games from "./routes/games";
 import GameDetail from "./routes/games/singleGame";
+import ContactPage from "./routes/contactPage/contactPage";
+import AdminGames from "./routes/adminGames/adminGames";
+import AdminGameDetail from "./routes/adminGames/adminGameDetail";
 
 function App() {
   const router = createBrowserRouter([
@@ -26,6 +29,10 @@ function App() {
         {
           path: "/",
           element: <HomePage />,
+        },
+        {
+          path: "/contact",
+          element: <ContactPage />,
         },
         {
           path: "/list",
@@ -92,8 +99,12 @@ function App() {
         },
         {
           path: "/admin/game/list",
-          element: <AdminTeamListPage />,
+          element: <AdminGames />,
           loader: listPageLoader,
+        },
+        {
+          path: "/admin/game/:id",
+          element: <AdminGameDetail />,
         },
         {
           path: "/admin/profile",

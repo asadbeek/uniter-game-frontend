@@ -50,7 +50,9 @@ function SinglePage() {
         <div className="wrapper">
           <p className="title">Game Categories</p>
           <div className="listVertical">
-            <div className="bottom">{team.team.category}</div>
+            <div className="bottom">
+              {team.team.category.split(",").join(", ")}
+            </div>
           </div>
           <p className="title">Number of players</p>
           <div className="listVertical">

@@ -19,12 +19,16 @@ function ProfileUpdatePage() {
     const { username, email, password } = Object.fromEntries(formData);
 
     try {
-      const res = await apiRequest.put(`/users/${currentUser.id}`, {
-        username,
-        email,
-        password,
-        avatar,
-      });
+      const res = await apiRequest.put(
+        `/users/${currentUser.id}`,
+        {
+          username,
+          email,
+          password,
+          avatar,
+        },
+        { withCredentials: true }
+      );
       updateUser(res.data);
       navigate("/profile");
     } catch (err) {
@@ -66,7 +70,7 @@ function ProfileUpdatePage() {
       </div>
       <div className="sideContainer">
         <img
-          src={currentUser.avatar || "/noavatar.png"}
+          src={avatar || currentUser.avatar || "/noavatar.png"}
           alt=""
           className="avatar"
         />
@@ -75,7 +79,6 @@ function ProfileUpdatePage() {
             cloudName: "dauaqt6sn",
             uploadPreset: "Uniter",
             multiple: false,
-            maxImageFileSize: 3000000,
             folder: "avatars",
           }}
           setAvatar={setAvatar}

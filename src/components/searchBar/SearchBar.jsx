@@ -1,8 +1,6 @@
 import { useState } from "react";
 import "./searchBar.scss";
 
-const types = ["buy", "rent"];
-
 function SearchBar() {
   const [query, setQuery] = useState({
     game: "",

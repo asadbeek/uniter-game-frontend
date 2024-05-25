@@ -1,4 +1,3 @@
-// import { listData } from "../../lib/dummydata";
 import "./listPage.scss";
 import Card from "../../components/card/Card";
 import { useLoaderData } from "react-router-dom";

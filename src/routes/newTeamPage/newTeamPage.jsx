@@ -5,6 +5,8 @@ import "react-quill/dist/quill.snow.css";
 import apiRequest from "../../lib/apiRequest";
 import UploadWidget from "../../components/uploadWidget/UploadWidget";
 import { useNavigate } from "react-router-dom";
+import { MultiSelect } from "primereact/multiselect";
+import { gamesData } from "../../constants";
 
 function NewTeamPage() {
   const [value, setValue] = useState("");
@@ -12,6 +14,8 @@ function NewTeamPage() {
   const [error, setError] = useState("");
   const [user, setUser] = useState("");
   const navigate = useNavigate();
+
+  const [selectedGames, setSelectedGames] = useState(null);
 
   useEffect(() => {
     const userLocal = JSON.parse(localStorage.getItem("user"));
@@ -25,7 +29,7 @@ function NewTeamPage() {
 
     try {
       const res = await apiRequest.post(`/team/${user.id}`, {
-        category: inputs.category,
+        category: selectedGames.join(","),
         name: inputs.name,
         city: inputs.city,
         numberOfPlayers: parseInt(inputs.numberOfPlayers),
@@ -59,9 +63,20 @@ function NewTeamPage() {
                 type="number"
               />
             </div>
-            <div className="item">
+            <div className="item form-multi-select">
               <label htmlFor="category">Category</label>
-              <input id="category" name="category" type="text" />
+              <MultiSelect
+                value={selectedGames}
+                id="category"
+                name="category"
+                onChange={(e) => setSelectedGames(e.value)}
+                options={gamesData}
+                optionLabel="label"
+                display="chip"
+                placeholder="Select Cities"
+                maxSelectedLabels={3}
+                className=""
+              />
             </div>
             <div className="item description">
               <label htmlFor="desc">Description</label>

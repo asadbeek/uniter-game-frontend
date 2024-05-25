@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import DOMPurify from "dompurify";
 import "./games.scss";
 
 const GameDetail = () => {
@@ -27,17 +28,20 @@ const GameDetail = () => {
         <p>
           <strong>Category:</strong> {game.category}
         </p>
-        <p>
-          <strong>Description:</strong> {game.description}
-        </p>
-        <p>
+        <div
+          className="bottom"
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(game.description),
+          }}
+        ></div>
+        {/* <p>
           <strong>Created At:</strong>{" "}
           {new Date(game.createdAt).toLocaleDateString()}
         </p>
         <p>
           <strong>Updated At:</strong>{" "}
           {new Date(game.updatedAt).toLocaleDateString()}
-        </p>
+        </p> */}
       </div>
     </div>
   );

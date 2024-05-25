@@ -24,6 +24,7 @@ function Navbar() {
         {shouldRenderNavBar && (
           <>
             <a href="/games">Games</a>
+            <a href="/contact">Contact</a>
           </>
         )}
       </div>
