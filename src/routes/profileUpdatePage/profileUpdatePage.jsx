@@ -16,14 +16,14 @@ function ProfileUpdatePage() {
     e.preventDefault();
     const formData = new FormData(e.target);
 
-    const { username, email, password } = Object.fromEntries(formData);
+    const { username, password } = Object.fromEntries(formData);
 
     try {
       const res = await apiRequest.put(
         `/users/${currentUser.id}`,
         {
           username,
-          email,
+
           password,
           avatar,
         },
@@ -51,7 +51,7 @@ function ProfileUpdatePage() {
               defaultValue={currentUser.username}
             />
           </div>
-          <div className="item">
+          {/* <div className="item">
             <label htmlFor="email">Email</label>
             <input
               id="email"
@@ -59,7 +59,7 @@ function ProfileUpdatePage() {
               type="email"
               defaultValue={currentUser.email}
             />
-          </div>
+          </div> */}
           <div className="item">
             <label htmlFor="password">Password</label>
             <input id="password" name="password" type="password" />

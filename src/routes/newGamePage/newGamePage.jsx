@@ -110,7 +110,7 @@ function NewGamePage() {
         </div>
       </div>
       <div className="sideContainer">
-        <img src="/logo.png" alt="" />
+        {/* <img src="/logo.png" alt="" /> */}
       </div>
     </div>
   );

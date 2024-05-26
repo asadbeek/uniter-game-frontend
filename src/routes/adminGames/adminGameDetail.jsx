@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import DOMPurify from "dompurify";
 import "./adminGames.scss";
 import { Button } from "primereact/button";
@@ -19,6 +19,8 @@ const AdminGameDetail = () => {
   const [image, setImage] = useState("");
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
+
+  const navigate = useNavigate();
 
   console.log(game);
 
@@ -70,6 +72,7 @@ const AdminGameDetail = () => {
       const res = await apiRequest.delete(`/games/deleteGames/${id}`);
       if (res.status === 200) {
         console.log("Game deleted successfully");
+        navigate("/admin/game/list");
       }
     } catch (err) {
       console.log(err);
