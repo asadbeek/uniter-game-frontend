@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import DOMPurify from "dompurify";
 import "./games.scss";
+import ListPage from "../listPage/listPage";
 
 const GameDetail = () => {
   const { id } = useParams();
@@ -34,6 +35,11 @@ const GameDetail = () => {
             __html: DOMPurify.sanitize(game.description),
           }}
         ></div>
+        <div>
+          <Link to="/list">
+            <span>Team List</span>
+          </Link>
+        </div>
         {/* <p>
           <strong>Created At:</strong>{" "}
           {new Date(game.createdAt).toLocaleDateString()}

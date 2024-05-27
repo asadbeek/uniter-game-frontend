@@ -73,7 +73,7 @@ function NewTeamPage() {
                 options={gamesData}
                 optionLabel="label"
                 display="chip"
-                placeholder="Select Cities"
+                placeholder="Select Games"
                 maxSelectedLabels={3}
                 className=""
               />
