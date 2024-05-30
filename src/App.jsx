@@ -100,7 +100,6 @@ function App() {
         {
           path: "/admin/game/list",
           element: <AdminGames />,
-          loader: listPageLoader,
         },
         {
           path: "/admin/game/:id",

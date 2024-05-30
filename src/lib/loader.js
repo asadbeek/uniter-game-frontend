@@ -10,3 +10,8 @@ export const listPageLoader = async () => {
   const res = await apiRequest.get("/team");
   return res.data;
 };
+
+// export const profilePageLoader = async ({ params }) => {
+//   const res = await apiRequest.get(`/users/profileTeams/${params.id}`);
+//   return res.data;
+// };

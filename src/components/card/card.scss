@@ -21,10 +21,20 @@
   }
   .textContainer {
     flex: 3;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 10px;
+
+    .btnDelete {
+      width: 20%;
+      margin: 5px;
+      padding: 12px;
+      color: #ffffff;
+      background-color: #ef4444;
+      border: 1px solid #ef4444;
+    }
 
     img {
       width: 16px;

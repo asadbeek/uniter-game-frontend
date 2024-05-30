@@ -26,9 +26,9 @@ function AdminProfilePage() {
         <div className="wrapper">
           <div className="title">
             <h1>Admin Information</h1>
-            <Link to="/admin/profile/update">
+            {/* <Link to="/admin/profile/update">
               <button>Update Profile</button>
-            </Link>
+            </Link> */}
           </div>
           <div className="info">
             <span>

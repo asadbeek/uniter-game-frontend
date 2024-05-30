@@ -1,13 +1,14 @@
-import List from "../../components/list/List";
 import "./profilePage.scss";
 import apiRequest from "../../lib/apiRequest";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
+import placeHolderImg from "../../../public/home-fon.jpg";
 
 function ProfilePage() {
   const { updateUser, currentUser } = useContext(AuthContext);
+  console.log("currentUser", currentUser);
 
   const navigate = useNavigate();
 
@@ -20,6 +21,22 @@ function ProfilePage() {
       console.log(err);
     }
   };
+
+  async function onDelete(id) {
+    try {
+      const res = await apiRequest.delete(`/team/${id}`);
+      if (res.status === 200) {
+        console.log("Team deleted successfully");
+
+        const updatedUser = await apiRequest.get(`/users/${currentUser.id}`);
+
+        updateUser(updatedUser.data);
+        console.log(updatedUser);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   return (
     <div className="profilePage">
@@ -46,10 +63,59 @@ function ProfilePage() {
           </div>
           <div className="title">
             <h1>My Team</h1>
-            <Link to="/add">
+            {/* <Link to="/add">
               <button>Create Team</button>
-            </Link>
+            </Link> */}
+            {currentUser && currentUser.teams.length > 0 ? (
+              <div>
+                <p>You have a Team</p>
+              </div>
+            ) : (
+              <>
+                <Link to="/add">
+                  <button>Create Team</button>
+                </Link>
+              </>
+            )}
           </div>
+          {currentUser.teams?.map((team) => (
+            <div key={team.id}>
+              <div className="card">
+                {team.img ? (
+                  <img src={team.img} alt="" />
+                ) : (
+                  <img src={placeHolderImg} />
+                )}
+                <div className="textContainer">
+                  <h2 className="title">{team.name}</h2>
+                  <button
+                    className="btnDelete"
+                    onClick={() => onDelete(team.id)}
+                  >
+                    Delete
+                  </button>
+                  <p className="address">
+                    <img src="/pin.png" alt="" />
+                    <span>{team.city}</span>
+                  </p>
+
+                  <p className="price">Players: {team.numberOfPlayers}</p>
+                  <div className="bottom">
+                    <div className="features">
+                      {team.category &&
+                        team.category.split(",").map((category) => {
+                          return (
+                            <div className="feature" key={category}>
+                              <span>{category}</span>
+                            </div>
+                          );
+                        })}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
       <div className="imageContainer">

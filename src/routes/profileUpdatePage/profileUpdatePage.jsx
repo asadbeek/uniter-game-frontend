@@ -23,7 +23,6 @@ function ProfileUpdatePage() {
         `/users/${currentUser.id}`,
         {
           username,
-
           password,
           avatar,
         },
