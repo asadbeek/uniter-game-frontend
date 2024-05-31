@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./newTeamPage.scss";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -7,20 +7,18 @@ import UploadWidget from "../../components/uploadWidget/UploadWidget";
 import { useNavigate } from "react-router-dom";
 import { MultiSelect } from "primereact/multiselect";
 import { gamesData } from "../../constants";
+import { AuthContext } from "../../context/AuthContext";
 
 function NewTeamPage() {
   const [value, setValue] = useState("");
   const [images, setImages] = useState("");
   const [error, setError] = useState("");
-  const [user, setUser] = useState("");
   const navigate = useNavigate();
 
   const [selectedGames, setSelectedGames] = useState(null);
 
-  useEffect(() => {
-    const userLocal = JSON.parse(localStorage.getItem("user"));
-    setUser(userLocal);
-  }, []);
+  const { updateUser, currentUser } = useContext(AuthContext);
+  console.log("currentUser", currentUser);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +26,7 @@ function NewTeamPage() {
     const inputs = Object.fromEntries(formData);
 
     try {
-      const res = await apiRequest.post(`/team/${user.id}`, {
+      const res = await apiRequest.post(`/team/${currentUser.id}`, {
         category: selectedGames.join(","),
         name: inputs.name,
         city: inputs.city,
@@ -37,6 +35,9 @@ function NewTeamPage() {
         availableDaysAndTimes: inputs.availableDaysAndTimes,
         img: images,
       });
+
+      const updatedUser = await apiRequest.get(`/users/${currentUser.id}`);
+      updateUser(updatedUser.data);
       console.log("inputs", res);
       navigate("/team/" + res.data.team.id);
     } catch (err) {
