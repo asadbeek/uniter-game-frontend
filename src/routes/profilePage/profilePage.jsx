@@ -66,7 +66,9 @@ function ProfilePage() {
             {/* <Link to="/add">
               <button>Create Team</button>
             </Link> */}
-            {currentUser && currentUser.teams.length > 0 ? (
+            {currentUser &&
+            currentUser.teams &&
+            currentUser.teams.length > 0 ? (
               <div>
                 <p>You have a Team</p>
               </div>
@@ -78,44 +80,46 @@ function ProfilePage() {
               </>
             )}
           </div>
-          {currentUser.teams?.map((team) => (
-            <div key={team.id}>
-              <div className="card">
-                {team.img ? (
-                  <img src={team.img} alt="" />
-                ) : (
-                  <img src={placeHolderImg} />
-                )}
-                <div className="textContainer">
-                  <h2 className="title">{team.name}</h2>
-                  <button
-                    className="btnDelete"
-                    onClick={() => onDelete(team.id)}
-                  >
-                    Delete
-                  </button>
-                  <p className="address">
-                    <img src="/pin.png" alt="" />
-                    <span>{team.city}</span>
-                  </p>
+          {currentUser.teams &&
+            currentUser.teams.length > 0 &&
+            currentUser.teams.map((team) => (
+              <div key={team.id}>
+                <div className="card">
+                  {team.img ? (
+                    <img src={team.img} alt="" />
+                  ) : (
+                    <img src={placeHolderImg} />
+                  )}
+                  <div className="textContainer">
+                    <h2 className="title">{team.name}</h2>
+                    <button
+                      className="btnDelete"
+                      onClick={() => onDelete(team.id)}
+                    >
+                      Delete
+                    </button>
+                    <p className="address">
+                      <img src="/pin.png" alt="" />
+                      <span>{team.city}</span>
+                    </p>
 
-                  <p className="price">Players: {team.numberOfPlayers}</p>
-                  <div className="bottom">
-                    <div className="features">
-                      {team.category &&
-                        team.category.split(",").map((category) => {
-                          return (
-                            <div className="feature" key={category}>
-                              <span>{category}</span>
-                            </div>
-                          );
-                        })}
+                    <p className="price">Players: {team.numberOfPlayers}</p>
+                    <div className="bottom">
+                      <div className="features">
+                        {team.category &&
+                          team.category.split(",").map((category) => {
+                            return (
+                              <div className="feature" key={category}>
+                                <span>{category}</span>
+                              </div>
+                            );
+                          })}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
       <div className="imageContainer">
