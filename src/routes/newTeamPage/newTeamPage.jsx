@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import "./newTeamPage.scss";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
