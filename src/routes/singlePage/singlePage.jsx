@@ -37,6 +37,9 @@ function SinglePage() {
                 <div>
                   <div className="price">{team.team.availableDaysAndTimes}</div>
                 </div>
+                <div className="btnMatch">
+                  <button>Match</button>
+                </div>
               </div>
               <div className="user">
                 <img src={team.team.creator.avatar} alt="" />

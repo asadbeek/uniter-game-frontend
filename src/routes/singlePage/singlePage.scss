@@ -71,6 +71,35 @@
               font-size: 20px;
               font-weight: 300;
             }
+            .btnMatch {
+              text-align: start;
+              margin: 20px;
+            }
+
+            .btnMatch button {
+              background-color: #fece51; /* Green background */
+              border: none; /* Remove borders */
+              color: black; /* White text */
+              padding: 15px 32px; /* Some padding */
+              text-align: center; /* Center the text (if you want to align the button text) */
+              text-decoration: none; /* Remove underline */
+              display: inline-block; /* Make the button inline-block */
+              font-size: 16px; /* Increase font size */
+              margin: 4px 2px; /* Some margin */
+              cursor: pointer; /* Add a pointer cursor on hover */
+              border-radius: 6px; /* Rounded corners */
+              transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hover effects */
+            }
+
+            .btnMatch button:hover {
+              background-color: #45a049; /* Darker green on hover */
+              transform: scale(1.05); /* Slightly larger on hover */
+            }
+
+            .btnMatch button:active {
+              background-color: #3e8e41; /* Even darker green on click */
+              transform: scale(0.95); /* Slightly smaller on click */
+            }
           }
           .user {
             display: flex;
