@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./newGamePage.scss";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -6,6 +6,7 @@ import apiRequest from "../../lib/apiRequest";
 import UploadWidget from "../../components/uploadWidget/UploadWidget";
 import { useNavigate } from "react-router-dom";
 import { gamesData } from "../../constants";
+import { AuthContext } from "../../context/AuthContext";
 
 function NewGamePage() {
   const navigate = useNavigate();
@@ -16,6 +17,8 @@ function NewGamePage() {
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
   const [isPublished, setIsPublished] = useState(false);
+
+  const { updateGames } = useContext(AuthContext);
 
   useEffect(() => {
     const userLocal = JSON.parse(localStorage.getItem("user"));
@@ -35,6 +38,7 @@ function NewGamePage() {
       });
       console.log("GameInputs", res);
 
+      updateGames(res.data);
       if (res.data.game) {
         navigate("/admin/game/list/");
       }

@@ -1,10 +1,11 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import SearchBar from "../../components/searchBar/SearchBar";
 import "./homePage.scss";
 import { AuthContext } from "../../context/AuthContext";
+import apiRequest from "../../lib/apiRequest";
 
 function HomePage() {
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, games } = useContext(AuthContext);
 
   console.log(currentUser);
 

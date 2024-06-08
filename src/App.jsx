@@ -19,8 +19,23 @@ import GameDetail from "./routes/games/singleGame";
 import ContactPage from "./routes/contactPage/contactPage";
 import AdminGames from "./routes/adminGames/adminGames";
 import AdminGameDetail from "./routes/adminGames/adminGameDetail";
+import MatchTeamPage from "./routes/matchedTeam/matchedTeam";
+import { useEffect } from "react";
+import apiRequest from "./lib/apiRequest";
 
 function App() {
+  useEffect(() => {
+    async function fetchGames() {
+      const gameStorage = localStorage.getItem("games");
+      if (!gameStorage) {
+        const gamesData = await apiRequest.get("/games/all");
+        localStorage.setItem("games", JSON.stringify(gamesData.data));
+      }
+    }
+
+    fetchGames();
+  }, []);
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -74,6 +89,11 @@ function App() {
           path: "/profile",
           element: <ProfilePage />,
         },
+        {
+          path: "/profile/matched",
+          element: <MatchTeamPage />,
+        },
+
         {
           path: "/profile/update",
           element: <ProfileUpdatePage />,

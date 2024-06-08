@@ -45,21 +45,29 @@ function ProfilePage() {
           <div className="title">
             <h1>User Information</h1>
             <Link to="/profile/update">
-              <button>Update Profile</button>
+              <button className="btn-update">Update Profile</button>
             </Link>
           </div>
+
           <div className="info">
-            <span>
-              Avatar:
-              <img src={currentUser.avatar || "noavatar.png"} alt="" />
-            </span>
+            <div className="title">
+              <span>
+                Avatar:
+                <img src={currentUser.avatar || "noavatar.png"} alt="" />
+              </span>
+              <Link to="/profile/matched">
+                <button className="mtch-btn">Matched Team</button>
+              </Link>
+            </div>
             <span>
               Username: <b>{currentUser.username}</b>
             </span>
             <span>
               E-mail: <b>{currentUser.email}</b>
             </span>
-            <button onClick={handleLogout}>Logout</button>
+            <button className="btn-update" onClick={handleLogout}>
+              Logout
+            </button>
           </div>
           <div className="title">
             <h1>My Team</h1>

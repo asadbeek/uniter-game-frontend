@@ -2,10 +2,26 @@ import "./singlePage.scss";
 import placeHolderImg from "../../../public/home-fon.jpg";
 import { useLoaderData } from "react-router-dom";
 import DOMPurify from "dompurify";
+import apiRequest from "../../lib/apiRequest";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 function SinglePage() {
   const team = useLoaderData();
-  console.log("team", team);
+
+  const { currentUser } = useContext(AuthContext);
+
+  const handleMatchTeam = async () => {
+    try {
+      const res = await apiRequest.get(
+        `/team/match/${currentUser.id}/${team.team.id}`
+      );
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="singlePage">
       <div className="details">
@@ -38,7 +54,7 @@ function SinglePage() {
                   <div className="price">{team.team.availableDaysAndTimes}</div>
                 </div>
                 <div className="btnMatch">
-                  <button>Match</button>
+                  <button onClick={() => handleMatchTeam()}>Match</button>
                 </div>
               </div>
               <div className="user">

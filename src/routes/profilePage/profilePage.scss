@@ -52,8 +52,14 @@
           align-items: center;
           gap: 20px;
         }
-
-        button {
+        .mtch-btn {
+          padding: 13px 23px;
+          background-color: #fece51;
+          cursor: pointer;
+          border: none;
+          color: black;
+        }
+        .btn-update {
           width: 100px;
           background-color: teal;
           border: none;

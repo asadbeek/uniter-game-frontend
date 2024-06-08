@@ -7,8 +7,16 @@ export const AuthContextProvider = ({ children }) => {
     JSON.parse(localStorage.getItem("user")) || null
   );
 
+  const [games, setGames] = useState(
+    JSON.parse(localStorage.getItem("games")) || null
+  );
+
   const updateUser = (data) => {
     setCurrentUser(data);
+  };
+
+  const updateGames = (data) => {
+    setGames(data);
   };
 
   useEffect(() => {
@@ -16,7 +24,9 @@ export const AuthContextProvider = ({ children }) => {
   }, [currentUser]);
 
   return (
-    <AuthContext.Provider value={{ currentUser, updateUser }}>
+    <AuthContext.Provider
+      value={{ currentUser, updateUser, games, updateGames }}
+    >
       {children}
     </AuthContext.Provider>
   );
