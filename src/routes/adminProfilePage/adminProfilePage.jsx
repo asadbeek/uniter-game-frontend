@@ -3,7 +3,6 @@ import apiRequest from "../../lib/apiRequest";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { Link } from "react-router-dom";
 
 function AdminProfilePage() {
   const { updateUser, currentUser } = useContext(AuthContext);
@@ -26,9 +25,6 @@ function AdminProfilePage() {
         <div className="wrapper">
           <div className="title">
             <h1>Admin Information</h1>
-            {/* <Link to="/admin/profile/update">
-              <button>Update Profile</button>
-            </Link> */}
           </div>
           <div className="info">
             <span>
