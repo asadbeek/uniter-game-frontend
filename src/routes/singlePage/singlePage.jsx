@@ -3,20 +3,33 @@ import placeHolderImg from "../../../public/home-fon.jpg";
 import { useLoaderData } from "react-router-dom";
 import DOMPurify from "dompurify";
 import apiRequest from "../../lib/apiRequest";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
 function SinglePage() {
   const team = useLoaderData();
 
   const { currentUser } = useContext(AuthContext);
+  const [isMatched, setIsMatched] = useState(false);
+
+  useEffect(() => {
+    const matchedTeams = JSON.parse(localStorage.getItem("matchedTeams")) || {};
+    if (matchedTeams[team.team.id]) {
+      setIsMatched(true);
+    }
+  }, [team.team.id]);
 
   const handleMatchTeam = async () => {
     try {
       const res = await apiRequest.get(
         `/team/match/${currentUser.id}/${team.team.id}`
       );
-      console.log(res);
+      console.log("Match response:", res);
+      // Update local storage
+      const matchedTeams =
+        JSON.parse(localStorage.getItem("matchedTeams")) || {};
+      matchedTeams[team.team.id] = true;
+      localStorage.setItem("matchedTeams", JSON.stringify(matchedTeams));
     } catch (err) {
       console.log(err);
     }
@@ -54,7 +67,9 @@ function SinglePage() {
                   <div className="price">{team.team.availableDaysAndTimes}</div>
                 </div>
                 <div className="btnMatch">
-                  <button onClick={() => handleMatchTeam()}>Match</button>
+                  {!isMatched && (
+                    <button onClick={handleMatchTeam}>Match</button>
+                  )}
                 </div>
               </div>
               <div className="user">

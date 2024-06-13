@@ -3,6 +3,7 @@ import apiRequest from "../../lib/apiRequest";
 import { AuthContext } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
 import placeHolderImg from "../../../public/home-fon.jpg";
+import "./matchedTeam.scss"; // Import the CSS file
 
 function MatchTeamPage() {
   const [team, setTeam] = useState(null);
@@ -26,59 +27,46 @@ function MatchTeamPage() {
     };
 
     fetchTeam();
-  }, []);
+  }, [currentUser.teams]);
+
   console.log("team", team);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
+  if (loading) return <p className="loading">Loading...</p>;
+  if (error) return <p className="error">{error}</p>;
 
   return (
-    <div>
+    <div className="match-team-page">
       <h1>Team Matching</h1>
-      <Link to={`/team/${team.id}`} className="">
-        {team && team.matchedTeam && !team.matcher.length > 0 && (
-          <div>
-            {team.matchedTeam.img ? (
+      {team && (
+        <Link to={`/team/${team.matchedTeam.id}`} className="team-container">
+          {team.matchedTeam && team.matcher.length === 0 && (
+            <div>
               <img
-                src={team.matchedTeam.img}
-                alt=""
-                style={{
-                  maxWidth: "100%",
-                  width: "100%",
-                  height: "200px",
-                  objectFit: "cover",
-                }}
+                src={team.matchedTeam.img || placeHolderImg}
+                alt={team.matchedTeam.name || "Placeholder"}
               />
-            ) : (
-              <img src={placeHolderImg} />
-            )}
-            <h2>{team.matchedTeam.name}</h2>
-            {/* Add more fields as necessary */}
-          </div>
-        )}
-      </Link>
-      <Link to={`/team/${team.id}`} className="">
-        {team && !team.matchedTeam && team.matcher.length > 0 && (
+              <div className="team-info">
+                <h2>Team Name:</h2>
+                <h2>{team.matchedTeam.name}</h2>
+              </div>
+            </div>
+          )}
+        </Link>
+      )}
+      {team && !team.matchedTeam && team.matcher.length > 0 && (
+        <Link to={`/team/${team.matcher[0].id}`} className="team-container">
           <div>
-            {team.matcher[0].img ? (
-              <img
-                src={team.matcher[0].img}
-                alt=""
-                style={{
-                  maxWidth: "100%",
-                  width: "100%",
-                  height: "200px",
-                  objectFit: "cover",
-                }}
-              />
-            ) : (
-              <img src={placeHolderImg} />
-            )}
-            <h2>{team.matcher[0].name}</h2>
-            {/* Add more fields as necessary */}
+            <img
+              src={team.matcher[0].img || placeHolderImg}
+              alt={team.matcher[0].name || "Placeholder"}
+            />
+            <div className="team-info">
+              <h2>Team Name:</h2>
+              <p>{team.matcher[0].name}</p>
+            </div>
           </div>
-        )}
-      </Link>
+        </Link>
+      )}
     </div>
   );
 }
