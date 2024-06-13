@@ -60,7 +60,20 @@ function MatchTeamPage() {
       <Link to={`/team/${team.id}`} className="">
         {team && !team.matchedTeam && team.matcher.length > 0 && (
           <div>
-            <img src={team.matcher[0].img} alt="" />
+            {team.matcher[0].img ? (
+              <img
+                src={team.matcher[0].img}
+                alt=""
+                style={{
+                  maxWidth: "100%",
+                  width: "100%",
+                  height: "200px",
+                  objectFit: "cover",
+                }}
+              />
+            ) : (
+              <img src={placeHolderImg} />
+            )}
             <h2>{team.matcher[0].name}</h2>
             {/* Add more fields as necessary */}
           </div>

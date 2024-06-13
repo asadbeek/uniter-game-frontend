@@ -87,7 +87,7 @@ const AdminGameDetail = () => {
         <p>
           <strong>Category:</strong> {game.category}
         </p>
-        <p>Status: {game.isPublished ? "Active" : "Draft"}</p>
+        <p>Status: {game.isPublished ? "Published" : "Not Published"}</p>
         <div
           className="bottom"
           dangerouslySetInnerHTML={{
