@@ -37,20 +37,18 @@ function MatchTeamPage() {
   return (
     <div className="match-team-page">
       <h1>Team Matching</h1>
-      {team && (
+      {team && team.matchedTeam && team.matcher.length === 0 && (
         <Link to={`/team/${team.matchedTeam.id}`} className="team-container">
-          {team.matchedTeam && team.matcher.length === 0 && (
-            <div>
-              <img
-                src={team.matchedTeam.img || placeHolderImg}
-                alt={team.matchedTeam.name || "Placeholder"}
-              />
-              <div className="team-info">
-                <h2>Team Name:</h2>
-                <h2>{team.matchedTeam.name}</h2>
-              </div>
+          <div>
+            <img
+              src={team.matchedTeam.img || placeHolderImg}
+              alt={team.matchedTeam.name || "Placeholder"}
+            />
+            <div className="team-info">
+              <h2>Team Name:</h2>
+              <h2>{team.matchedTeam.name}</h2>
             </div>
-          )}
+          </div>
         </Link>
       )}
       {team && !team.matchedTeam && team.matcher.length > 0 && (

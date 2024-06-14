@@ -19,6 +19,7 @@ export const AuthContextProvider = ({ children }) => {
     setGames(data);
   };
 
+  //The useEffect hook ensures that whenever currentUser changes, the new value is saved to localStorage.
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(currentUser));
   }, [currentUser]);
