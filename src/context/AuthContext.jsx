@@ -6,6 +6,7 @@ export const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(localStorage.getItem("user")) || null
   );
+  //This state variable holds the current user's information. It is initialized with data from localStorage
 
   const [games, setGames] = useState(
     JSON.parse(localStorage.getItem("games")) || null
@@ -25,6 +26,7 @@ export const AuthContextProvider = ({ children }) => {
   }, [currentUser]);
 
   return (
+    //AuthContext.Provider makes these properties available to any component that consumes this context.
     <AuthContext.Provider
       value={{ currentUser, updateUser, games, updateGames }}
     >

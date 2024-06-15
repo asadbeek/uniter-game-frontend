@@ -6,8 +6,7 @@ function ContactPage() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Here you can add your email sending logic
-    // For now, we just simulate a successful submission
+    // here just simulate a successful submission
     setShowPopup(true);
 
     // Hide the popup after a few seconds
