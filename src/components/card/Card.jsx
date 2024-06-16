@@ -5,13 +5,9 @@ import placeHolderImg from "../../../public/home-fon.jpg";
 function Card({ item }) {
   return (
     <div className="card">
-      <Link to={`/team/${item.id}`} className="imageContainer">
-        {item.img ? (
-          <img src={item.img} alt="" />
-        ) : (
-          <img src={placeHolderImg} />
-        )}
-      </Link>
+      {/* <Link to={`/team/${item.id}`} className="imageContainer"> */}
+      {item.img ? <img src={item.img} alt="" /> : <img src={placeHolderImg} />}
+      {/* </Link> */}
       <div className="textContainer">
         <h2 className="title">
           <Link to={`/team/${item.id}`}>{item.name}</Link>
