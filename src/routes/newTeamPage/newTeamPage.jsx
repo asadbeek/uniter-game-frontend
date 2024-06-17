@@ -13,9 +13,9 @@ function NewTeamPage() {
   const [value, setValue] = useState("");
   const [images, setImages] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate();
-
   const [selectedGames, setSelectedGames] = useState(null);
+
+  const navigate = useNavigate();
 
   const { updateUser, currentUser } = useContext(AuthContext);
   console.log("currentUser", currentUser);
