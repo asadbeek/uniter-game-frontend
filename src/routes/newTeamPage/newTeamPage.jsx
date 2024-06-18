@@ -39,7 +39,7 @@ function NewTeamPage() {
       const updatedUser = await apiRequest.get(`/users/${currentUser.id}`);
       updateUser(updatedUser.data);
       console.log("inputs", res);
-      navigate("/team/" + res.data.team.id);
+      navigate("/profile");
     } catch (err) {
       console.log(err);
       setError(error);

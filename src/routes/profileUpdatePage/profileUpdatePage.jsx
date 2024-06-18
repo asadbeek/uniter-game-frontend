@@ -13,10 +13,12 @@ function ProfileUpdatePage() {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
+    //prevents from page reload
     e.preventDefault();
     const formData = new FormData(e.target);
 
     const { username, password } = Object.fromEntries(formData);
+    //it converts the form data into a plain JavaScript object.
 
     try {
       const res = await apiRequest.put(

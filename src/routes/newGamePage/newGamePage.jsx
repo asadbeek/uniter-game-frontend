@@ -9,7 +9,6 @@ import { gamesData } from "../../constants";
 import { AuthContext } from "../../context/AuthContext";
 
 function NewGamePage() {
-  const navigate = useNavigate();
   const [value, setValue] = useState("");
   const [images, setImages] = useState("");
   const [error, setError] = useState("");
@@ -17,6 +16,8 @@ function NewGamePage() {
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
   const [isPublished, setIsPublished] = useState(false);
+
+  const navigate = useNavigate();
 
   const { updateGames } = useContext(AuthContext);
 

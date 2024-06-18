@@ -54,8 +54,6 @@ const AdminGameDetail = () => {
         image: image,
       });
       if (res.status === 200) {
-        // Optionally update the state with the new game data from the response
-
         const getGame = await apiRequest.get(`/games/${id}`);
         console.log(getGame.data);
         setGame(getGame.data);
